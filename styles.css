@@ -1,0 +1,312 @@
+/* =========================================================
+   پازل قصه‌های پرنده — styles.css
+   RTL / فارسی — متغیرهای رنگ، فاصله و شعاع گوشه‌ها
+   ========================================================= */
+
+/* ---------- فونت ----------
+   IRANSansX در فایل‌های پیوست در دسترس نبود؛ طبق دستور،
+   Vazirmatn به‌عنوان فونت فارسی جایگزین تعریف می‌شود.
+   اگر کاربر فایل‌های IRANSansX را در fonts/ بگذارد،
+   همین‌جا بارگذاری و در اولویت قرار می‌گیرد.            */
+@font-face{
+  font-family:"IRANSansX";
+  src:url("fonts/IRANSansX-Regular.woff2") format("woff2"),
+      url("fonts/IRANSansX-Regular.woff")  format("woff");
+  font-weight:300 900; font-display:swap;
+}
+@font-face{
+  font-family:"Vazirmatn";
+  src:url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight:400; font-display:swap;
+}
+@font-face{
+  font-family:"Vazirmatn";
+  src:url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-Bold.woff2") format("woff2");
+  font-weight:700; font-display:swap;
+}
+
+/* ---------- متغیرها ---------- */
+:root{
+  /* رنگ‌ها */
+  --color-primary:#8635CF;
+  --color-primary-dark:#6A24A6;
+  --color-primary-soft:#F1E7FB;
+  --color-text:#431B68;
+  --color-text-soft:#6E5587;
+  --color-bg:#FBF7FF;
+  --color-surface:#FFFFFF;
+  --color-line:#EADDF7;
+
+  /* رنگ کارت قصه‌ها */
+  --card-lilac:#D8BEF5;
+  --card-sky:#B0D6F8;
+  --card-pink:#F8BAD8;
+  --card-yellow:#FAE8A0;
+
+  /* فاصله‌ها */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+
+  /* شعاع گوشه‌ها */
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-pill:999px;
+
+  --shadow-card:0 6px 18px rgba(67,27,104,.10);
+  --shadow-pop:0 14px 34px rgba(67,27,104,.18);
+
+  --page-max:1180px;
+}
+
+/* ---------- پایه ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  direction:rtl;
+  unicode-bidi:isolate;
+  font-family:"IRANSansX","Vazirmatn",Tahoma,sans-serif; /* اعداد فارسی با خودِ فونت */
+  font-feature-settings:"ss01";
+  color:var(--color-text);
+  background:var(--color-bg);
+  line-height:1.9;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{text-align:right;margin:0;line-height:1.6;font-weight:700}
+p{text-align:right;margin:0}
+button{font-family:inherit}
+
+.container{width:min(100% - 2*var(--space-4),var(--page-max));margin-inline:auto}
+.visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);overflow:hidden}
+
+/* ---------- دکمه‌ها ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
+  border:0;cursor:pointer;font-weight:700;font-size:1rem;
+  padding:var(--space-3) var(--space-5);border-radius:var(--radius-pill);
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--color-primary);color:#fff;box-shadow:var(--shadow-card)}
+.btn-primary:hover{background:var(--color-primary-dark)}
+.btn-secondary{background:#fff;color:var(--color-primary);border:2px solid var(--color-primary)}
+.btn-secondary:hover{background:var(--color-primary-soft)}
+.btn-danger{background:#FDECEC;color:#B3261E;border:2px solid #F3C4C0}
+.btn-continue{background:#fff;color:var(--color-primary);border:2px dashed var(--color-primary);font-size:.9rem;padding:var(--space-2) var(--space-4)}
+
+/* ---------- هدر لوگوها ---------- */
+.site-header{background:var(--color-surface);border-bottom:1px solid var(--color-line)}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-block:var(--space-3);
+}
+.brand img{height:52px;width:auto;object-fit:contain}
+.brand-zipad img{height:36px}
+.brand:focus-visible{outline:3px solid var(--color-primary);outline-offset:4px;border-radius:var(--radius-sm)}
+
+/* ---------- بنر اصلی ---------- */
+.hero{margin-top:var(--space-6)}
+.hero-media{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-pop);background:#EFE6FA;
+}
+.hero-img{width:100%;height:100%;object-fit:cover;aspect-ratio:1440/560}
+.hero-panel{
+  position:absolute;top:50%;right:var(--space-7);transform:translateY(-50%);
+  width:min(46%,520px);background:rgba(255,255,255,.94);
+  border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);
+  box-shadow:var(--shadow-card);text-align:right;
+}
+.hero-title{font-size:clamp(1.35rem,2.4vw,2rem);color:var(--color-text)}
+.hero-sub{color:var(--color-text-soft);margin-top:var(--space-2);font-size:1rem}
+.btn-hero{margin-top:var(--space-4)}
+
+/* ---------- پازل ---------- */
+.puzzle{margin-top:var(--space-8)}
+.section-title{font-size:clamp(1.25rem,2vw,1.6rem);color:var(--color-text)}
+.puzzle-grid{
+  display:grid;gap:var(--space-6);align-items:start;
+}
+@media (min-width:900px){
+  .puzzle-grid{grid-template-columns:1.15fr .85fr}
+  .puzzle-figure{grid-column:1;grid-row:1}   /* راست (RTL) = تصویر بزرگ */
+  .puzzle-info {grid-column:2;grid-row:1}    /* چپ  = توضیح و پیشرفت */
+}
+.puzzle-figure{
+  margin:0;background:var(--color-surface);border:1px solid var(--color-line);
+  border-radius:var(--radius-lg);padding:var(--space-3);box-shadow:var(--shadow-card);
+}
+.puzzle-big{width:100%;border-radius:var(--radius-md);aspect-ratio:760/620;object-fit:cover}
+.puzzle-desc{color:var(--color-text-soft);margin-top:var(--space-3)}
+
+/* تصاویر کوچک مرحله — فقط نشانگر، نه دکمه */
+.puzzle-stages{
+  list-style:none;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:var(--space-3);padding:0;margin:var(--space-4) 0 0;
+}
+.stage-thumb{
+  pointer-events:none;user-select:none;-webkit-user-select:none;
+  border-radius:var(--radius-md);overflow:hidden;
+  border:1px solid var(--color-line);background:var(--color-surface);
+  opacity:.55;filter:saturate(.7);transition:opacity .25s ease,filter .25s ease;
+}
+.stage-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.stage-thumb.is-done{opacity:1;filter:none;border-color:var(--color-primary)}
+
+/* پیشرفت */
+.puzzle-progressbox{
+  margin-top:var(--space-5);background:var(--color-surface);
+  border:1px solid var(--color-line);border-radius:var(--radius-lg);
+  padding:var(--space-4) var(--space-5);box-shadow:var(--shadow-card);
+}
+.progress-label{font-weight:700;margin-bottom:var(--space-2)}
+.progress-track{
+  position:relative;height:14px;border-radius:var(--radius-pill);
+  background:var(--color-primary-soft);overflow:hidden;
+}
+.progress-fill{
+  position:absolute;inset-block:0;right:0;width:0%;
+  background:linear-gradient(270deg,var(--color-primary),#A76BE6);
+  border-radius:var(--radius-pill);transition:width .45s ease;
+}
+.puzzle-message{
+  margin-top:var(--space-3);font-weight:700;color:var(--color-primary);text-align:right;
+}
+#pickPhotoInline{margin-top:var(--space-3)}
+
+/* ---------- کارت قصه‌ها ---------- */
+.stories{margin-top:var(--space-8)}
+.stories-hint{color:var(--color-text-soft);margin-top:var(--space-1)}
+.story-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);
+  margin-top:var(--space-5);direction:rtl; /* راست‌به‌چپ */
+}
+@media (max-width:900px){.story-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.story-grid{grid-template-columns:1fr}}
+
+.story-card{
+  background:var(--color-surface);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-card);padding:var(--space-3);
+  display:flex;flex-direction:column;gap:var(--space-3);
+}
+.story-link{display:flex;flex-direction:column;gap:var(--space-3)}
+.story-cover{
+  width:100%;aspect-ratio:600/440;object-fit:cover;border-radius:var(--radius-md);
+}
+.story-name{font-size:1.02rem;text-align:right}
+
+/* گروه متن+آیکون پخش، وسطِ دکمه */
+.play-pill{
+  align-self:center;display:inline-flex;align-items:center;justify-content:center;
+  gap:var(--space-2);background:var(--color-primary);color:#fff;
+  border-radius:var(--radius-pill);padding:var(--space-2) var(--space-5);
+  font-weight:700;font-size:.92rem;transition:background-color .15s ease;
+}
+.story-link:hover .play-pill{background:var(--color-primary-dark)}
+
+.card-lilac  .play-pill{background:var(--color-primary)}
+.card-sky    .play-pill{background:#2F7CC4}
+.card-pink   .play-pill{background:#C94F86}
+.card-yellow .play-pill{background:#B98A18}
+.card-lilac  {border-top:6px solid var(--card-lilac)}
+.card-sky    {border-top:6px solid var(--card-sky)}
+.card-pink   {border-top:6px solid var(--card-pink)}
+.card-yellow {border-top:6px solid var(--card-yellow)}
+.js-continue{align-self:center}
+
+/* ---------- بنر انتخاب عکس ---------- */
+.photobanner{margin-top:var(--space-8)}
+.photobanner-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);
+  background:linear-gradient(280deg,#EFE1FC,#F9EFFE);
+  border:1px solid var(--color-line);border-radius:var(--radius-lg);
+  padding:var(--space-6);box-shadow:var(--shadow-card);
+}
+.photobanner-text p{color:var(--color-text-soft);margin-top:var(--space-2)}
+.photobanner-side{display:flex;align-items:center;gap:var(--space-4);flex-shrink:0}
+.photo-preview{
+  width:110px;height:110px;object-fit:cover;border-radius:var(--radius-md);
+  border:3px solid #fff;box-shadow:var(--shadow-card);
+}
+
+/* ---------- فوتر ---------- */
+.site-footer{
+  margin-top:var(--space-8);background:var(--color-text);color:#EFE6FA;
+  padding-block:var(--space-6);
+}
+.site-footer p{text-align:center;color:inherit}
+.footer-note{margin-top:var(--space-1);font-size:.85rem;color:#CBB7E4}
+
+/* ---------- مودال انتخاب عکس ---------- */
+.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:var(--space-4)}
+.modal-backdrop{position:absolute;inset:0;background:rgba(40,12,66,.55)}
+.modal-box{
+  position:relative;background:var(--color-surface);color:var(--color-text);
+  width:min(94vw,440px);border-radius:var(--radius-lg);padding:var(--space-6);
+  box-shadow:var(--shadow-pop);text-align:right;
+}
+.modal-box h3{font-size:1.25rem}
+.modal-hint{color:var(--color-text-soft);font-size:.9rem;margin-top:var(--space-2)}
+.modal-actions{display:flex;gap:var(--space-3);margin-top:var(--space-4);flex-wrap:wrap}
+.modal-preview{
+  margin-top:var(--space-4);width:100%;max-height:240px;object-fit:contain;
+  border-radius:var(--radius-md);border:1px solid var(--color-line);background:#F6F1FC;
+}
+.modal-msg{margin-top:var(--space-3);font-weight:700;min-height:1.4em}
+.modal-msg.ok{color:#1B7F3B}
+.modal-msg.err{color:#C0392B}
+.modal-x{
+  position:absolute;top:var(--space-3);left:var(--space-3);
+  width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--color-primary-soft);color:var(--color-primary);font-size:1rem;
+}
+
+/* ---------- موبایل (≤۸۹۹px) ---------- */
+@media (max-width:899px){
+  .hero{margin-top:var(--space-4)}
+  .hero-media{border-radius:var(--radius-md)}
+  .hero-img{aspect-ratio:16/10}
+  /* موبایل: تصویر بالا، پنل متن زیر آن، دکمهٔ تمام‌عرض */
+  .hero-panel{
+    position:static;transform:none;width:auto;
+    border-radius:0;box-shadow:none;padding:var(--space-4);
+    border-top:1px solid var(--color-line);
+  }
+  .btn-hero{display:flex;width:100%;margin-top:var(--space-3)}
+
+  /* ترتیب موبایل: عنوان و توضیح → تصویر و مراحل کوچک → پیشرفت و دکمه */
+  .puzzle{margin-top:var(--space-6)}
+  .puzzle-grid{display:flex;flex-direction:column}
+  .puzzle-info{order:1}
+  .puzzle-figure{order:2}
+  .puzzle-progressbox{order:3}
+  .puzzle-info > .section-title,
+  .puzzle-info > .puzzle-desc{order:0}
+  .puzzle-stages{order:1}
+  .puzzle-progressbox{margin-top:var(--space-4)}
+
+  /* کارت‌ها زیر هم؛ تصویر قصه سمت راست کارت */
+  .story-link{flex-direction:row;align-items:center;gap:var(--space-3)} /* row + rtl → تصویر راست */
+  .story-cover{width:120px;flex-shrink:0;aspect-ratio:1/1}
+  .play-pill{align-self:flex-start}
+
+  .photobanner-inner{flex-direction:column;align-items:stretch;text-align:right;padding:var(--space-5)}
+  .photobanner-side{justify-content:flex-start}
+}
+
+/* کاهش انیمیشن */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
